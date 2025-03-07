@@ -49,7 +49,7 @@ function DesktopSidebar() {
             className={buttonVariants({
                 variant: activeRoute.href === route.href 
                 ? "sidebarActiveItem" 
-                : "sidebarActiveItem",
+                : "sidebarItem",
               })}
             >
             <route.icon size={20} />
