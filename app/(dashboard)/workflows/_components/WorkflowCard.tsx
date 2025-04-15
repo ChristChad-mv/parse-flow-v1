@@ -68,7 +68,7 @@ function WorkflowCard({ workflow } : { workflow : Workflow }) {
               Edit
           </Link>
 
-          <WorkflowActions workflowName={workflow.name} />
+          <WorkflowActions workflowName={workflow.name} workflowId={workflow.id} />
         </div>
       </CardContent>
     </Card>
@@ -78,7 +78,7 @@ function WorkflowCard({ workflow } : { workflow : Workflow }) {
 export default WorkflowCard
 
 
-function WorkflowActions({ workflowName }: { workflowName: string }) {
+function WorkflowActions({ workflowName, workflowId }: { workflowName: string, workflowId: string }) {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   return (
@@ -87,6 +87,7 @@ function WorkflowActions({ workflowName }: { workflowName: string }) {
         open={showDeleteDialog}
         setOpen={setShowDeleteDialog}
         workflowName={workflowName}
+        workflowId={workflowId}
       />
       <DropdownMenu>
           <DropdownMenuTrigger asChild>
