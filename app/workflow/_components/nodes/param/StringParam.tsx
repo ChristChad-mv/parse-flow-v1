@@ -7,7 +7,7 @@ import { ParamProps } from '@/types/appNode';
 
 function StringParam({ param, value, updateNodeParamValue }: ParamProps ) {
   const [internalValue, setInternalValue] = useState(value);
-  const { id } = useId();
+  const id = useId();
   return (
     <div className='space-y-1 p-1 w-full'>
       <Label htmlFor={id} className='text-xs flex'>
