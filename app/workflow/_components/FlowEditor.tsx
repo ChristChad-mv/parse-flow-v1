@@ -72,25 +72,12 @@ function FlowEditor({ workflow }: { workflow: Workflow }) {
     const position = screenToFlowPosition({
       x: event.clientX,
       y: event.clientY
-    })
-    
-    const newNode = CreateFlowNode(taskType as TaskType, position);
-    setNodes((nds) => nds.concat(newNode));
-    
-    const currentViewport = getViewport();
-    const definition = JSON.stringify({
-      nodes: nodes,
-      edges,
-      viewport: currentViewport
     });
     
-    try {
-      await UpdateWorkflow({ id: workflow.id, definition });
-    } catch (error) {
-      console.error("Erreur lors de la mise à jour du workflow", error);
-    }
+    const newNode = CreateFlowNode(taskType as TaskType, position);
+    setNodes((nds) => nds.concat(newNode))
     
-  }, [nodes, edges, screenToFlowPosition, getViewport, setNodes, workflow.id]);
+  }, [screenToFlowPosition, setNodes]);
 
   const onConnect = useCallback((connection: Connection) => {
     setEdges((eds) => addEdge({ ...connection, animated: true }, eds));
