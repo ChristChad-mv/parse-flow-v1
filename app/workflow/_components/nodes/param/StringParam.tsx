@@ -15,8 +15,22 @@ function StringParam({ param, value, updateNodeParamValue, disabled }: ParamProp
   }, [value]);
 
   let Component = Input;
+  let componentProps = {
+    id,
+    className: 'text-xs',
+    value: internalValue,
+    disabled,
+    placeholder: 'Enter a value here',
+    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setInternalValue(e.target.value),
+    onBlur: () => updateNodeParamValue(internalValue)
+  };
+
   if(param.variant === "textarea") {
     Component = Textarea;
+    componentProps = {
+      ...componentProps,
+      className: 'text-xs min-h-[100px] resize-y',
+    };
   }
   
   return (
@@ -25,15 +39,7 @@ function StringParam({ param, value, updateNodeParamValue, disabled }: ParamProp
         {param.name}
         {param.required && <p className='text-red-500 px-1'>*</p> }
       </Label>
-      <Component 
-        id={id}
-        className='text-xs'
-        value={internalValue}
-        disabled={disabled}
-        placeholder='Enter a value here'
-        onChange={(e: any) => setInternalValue(e.target.value)}
-        onBlur={(e:any) => updateNodeParamValue(e.target.value)} 
-      />
+      <Component {...componentProps} />
       {param.helperText && (
         <p className='text-muted-foreground px-2'>{param.helperText}</p>
       )}
