@@ -6,6 +6,7 @@ import { AppNodeData } from "@/types/appNode";
 import { TaskRegistry } from "@/lib/workflow/task/registry";
 import NodeInputs, { NodeInput } from "./NodeInputs";
 import NodeOutputs, { NodeOutput } from "./NodeOutputs";
+import { Badge } from "lucide-react";
 
 const NodeComponent = memo((props : NodeProps) => {
   const nodeData = props.data as AppNodeData;
@@ -16,7 +17,7 @@ const NodeComponent = memo((props : NodeProps) => {
       nodeId={props.id} 
       isSelected={!!props.selected} 
     >
-      <NodeHeader taskType={nodeData.type} />
+      <NodeHeader taskType={nodeData.type} nodeId={props.id} />
       <NodeInputs>
         {task.inputs.map(input => (
           <NodeInput key={input.name} input={input} nodeId={props.id} />
