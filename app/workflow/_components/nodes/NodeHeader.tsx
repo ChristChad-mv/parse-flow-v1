@@ -40,8 +40,9 @@ function NodeHeader({ taskType, nodeId }: { taskType: TaskType, nodeId: string }
                 size={"icon"}
                 onClick={() => {
                   const node = getNode(nodeId) as AppNode;
+                  if (!node || !node.measured?.height) return;
                   const newX = node.position.x;
-                  const newY = node.position.y + node.measured?.height! + 20;
+                  const newY = node.position.y + node.measured.height + 20;
                   const newNode = CreateFlowNode(node.data.type, {
                     x: newX, 
                     y: newY
